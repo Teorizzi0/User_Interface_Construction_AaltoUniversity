@@ -1,0 +1,161 @@
+body {
+    /*background-image: url("b.jpg"); */
+    /*background-color: rgba(212,228,239,1); */
+  background-image: url('../images/background.jpg');
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;    
+}
+div {
+   background-color: white;
+   color:black;
+   border:1px solid #0a12e9;
+   border-radius: 10px;
+   width:700px;
+   height:500px;
+   margin: auto;
+   margin-top: 55px;
+   resize:none;
+   font-family:"Georgia";
+   font-size:20px;
+   text-align: left;
+   overflow-y:auto; 
+   -webkit-box-sizing: border-box;  /*same size after padding*/
+   -moz-box-sizing: border-box;    
+   box-sizing: border-box;
+   padding: 20px;
+   user-select:none;
+   overflow-x:hidden; /* Hide horizontal scrollbar */
+   -webkit-box-shadow: 10px 10px 6px -1px rgba(74,130,250,1);
+   -moz-box-shadow: 10px 10px 6px -1px rgba(74,130,250,1);
+   box-shadow: 10px 10px 6px -1px rgba(74,130,250,1);
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    cursor:pointer;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #0a12e9;
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0a12e9;
+  }
+
+
+p {
+    margin: auto;
+    width:700px;
+    margin-top: 20px;
+}
+
+input {
+    color:black;
+    background-color:white;
+    border-radius: 10px;
+    border:1px solid #0a12e9;
+    width:700px;
+    height:90px;
+    font-family:"Georgia";
+    font-size:20px;
+    -webkit-box-sizing: border-box;  /*same size after padding*/
+    -moz-box-sizing: border-box;    
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+button {
+    display: inline-block;
+    padding: 8px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4a82fa;
+    border: none;
+    border-radius: 15px;
+    margin-top: 10px;
+  }
+  
+button:hover {background-color: #2d55aa}
+  
+button:active {
+    background-color: #2d55aa;
+    box-shadow: 0 5px white;
+    transform: translateY(4px);
+  }
+
+  .yes_button {
+    color: #20bf6b !important;
+    text-transform: uppercase;
+    background: #ffffff;
+    cursor: pointer;
+    padding: 4px 16px;
+    border: 2px solid #20bf6b !important;
+    border-radius: 6px;
+    display: inline-block;
+    transition: all 0.3s ease 0s;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    }
+    .yes_button:hover {
+    color: #494949 !important;
+    border-radius: 50px;
+    border-color: #494949 !important;
+    transition: all 0.3s ease 0s;
+    }
+
+    .no_button {
+      color: #fd2b2b !important;
+      text-transform: uppercase;
+      background: #ffffff;
+      cursor: pointer;
+      padding: 4px 16px;
+      border: 2px solid #fd2b2b !important;
+      border-radius: 6px;
+      display: inline-block;
+      transition: all 0.3s ease 0s;
+      }
+      .no_button:hover {
+      color: #494949 !important;
+      border-radius: 50px;
+      border-color: #494949 !important;
+      transition: all 0.3s ease 0s;
+      }
+
+      .help_button {
+        color: #4a82fa !important;
+        text-transform: uppercase;
+        background: #ffffff;
+        cursor: pointer;
+        padding: 4px 16px;
+        border: 2px solid #4a82fa !important;
+        border-radius: 6px;
+        display: inline-block;
+        transition: all 0.3s ease 0s;
+        margin-top: 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        }
+        .help_button:hover {
+        color: #494949 !important;
+        border-radius: 50px;
+        border-color: #494949 !important;
+        transition: all 0.3s ease 0s;
+        }

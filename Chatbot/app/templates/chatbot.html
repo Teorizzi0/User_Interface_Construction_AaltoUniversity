@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <title>CLI_CHATBOT - USER INTERFACE CONSTRUCTION</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+<!--===============================================================================================-->	
+   <link rel="stylesheet" href="../static/css/style.css">
+<!--===============================================================================================-->	   
+</head> 
+  
+<body  style="text-align:center;">   
+   <div 
+      readonly="true" id="chat_output">
+   </div>
+   
+   <p>
+      <input type="text" id="command" placeholder="Type here">  
+      <button id="command_button">Submit</button>
+      <button id="restart" style="background-color:#f32828;">Clear</button>
+   </p>
+</body>
+
+<!--===============================================================================================-->	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!--===========Script used to manage the answer/question functionality=============================-->	
+<script>
+      var initial_text = "<b>Hi! Thanks for using my CLI chatbot. Please type a command!</b>";
+      var final_text = "<br><b>I think we have finished. Have a good day!<b>";
+      var chat_text = initial_text;
+      
+      var chat_prompt = [];
+      var chat_answ = [];
+      
+      var chat_mode = false;
+      var prompt_id = 0;
+      
+      function hello() {
+         chat_text = chat_text + "<br/>Hello <b>{{username}}</b>! I am Bob, your favorite chatbot. <br>Type <b><code>menu</code></b> to start.<br>";
+         $("#chat_output").html(chat_text);
+         var elem = document.getElementById('chat_output');
+         elem.scrollTop = elem.scrollHeight;
+      }
+
+      function popupbox(text) {
+         alert(text);
+         return "";
+      }
+
+      function popupfaq(){
+         alert("Check our f.a.q");
+         chat_text = chat_text + "<br/>I hope it helped you! <br>Do you need something else?<br>";
+         chat_text = chat_text + '<a class="yes_button" onclick="help2()">Yes</a>';
+         chat_text = chat_text + '<a class="no_button" onclick="end()">No</a>';
+         $("#chat_output").html(chat_text);
+         var elem = document.getElementById('chat_output');
+         elem.scrollTop = elem.scrollHeight;
+      }
+
+      function popupoperator(){
+         alert("Chat with an operator");
+         chat_text = chat_text + "<br/>I hope it helped you! <br>Do you need something else?<br>";
+         chat_text = chat_text + '<a class="yes_button" onclick="help2()">Yes</a>';
+         chat_text = chat_text + '<a class="no_button" onclick="end()">No</a>';
+         $("#chat_output").html(chat_text);
+         var elem = document.getElementById('chat_output');
+         elem.scrollTop = elem.scrollHeight;
+      }
+      
+      
+      function cls() {
+         chat_text = initial_text;
+         $("#chat_output").html(chat_text);
+         var elem = document.getElementById('chat_output');
+         elem.scrollTop = elem.scrollHeight;
+      }
+
+      function help(){
+         chat_text = chat_text + '<br>Please, select which kind of assistance!<br>';
+         chat_text = chat_text + '<a class="help_button" onclick="popupoperator()">Operator</a>';
+         chat_text = chat_text + '<a class="help_button" onclick="popupfaq()">F.A.Q</a>';
+         chat_text = chat_text + '<a class="help_button" onclick="menu()">Menu</a>';
+         $("#chat_output").html(chat_text);
+         var elem = document.getElementById('chat_output');
+         elem.scrollTop = elem.scrollHeight;
+
+      }
+     
+      function help2(){
+         chat_text = chat_text + '<br>What do you need?<br>';
+         chat_text = chat_text + '<a class="help_button" onclick="help()">Help</a>';
+         chat_text = chat_text + '<a class="help_button" onclick="menu()">Menu</a>';
+         $("#chat_output").html(chat_text);
+         var elem = document.getElementById('chat_output');
+         elem.scrollTop = elem.scrollHeight;
+      }
+
+      function suggest() {
+         return('<br><b>Sorry, I am not able to understand you.<br>Type <code>menu</code></b>');
+      }
+
+      function end(){
+         chat_text = chat_text + final_text;
+         $("#chat_output").html(chat_text);
+         var elem = document.getElementById('chat_output');
+         elem.scrollTop = elem.scrollHeight;
+      }
+
+      function addDelivery() {
+         
+         var myName = prompt("Please enter the sender's name", "{{username}}");   
+         var customer = prompt("Please enter the customer name");
+         var pickup = prompt("Please enter the pick-up address");
+         var destination = prompt("Please enter the destination address");
+         var amount = prompt("Please enter how many pack you have to deliver");
+         var price = prompt("Please enter the price (in dollar)");
+         
+         if (myName != "" && customer != "" && pickup != "" && destination != "" && amount != "" && price != "") {
+            chat_text = chat_text + "<br>Thank you! This is your delivery:<br><b><br>Sender:</b> " + myName + "<br><b>Customer:</b> " + customer 
+            + "<br><b>Pick-up address:</b> " + pickup + "<br><b>Destination address:</b> " + destination + "<br><b>Amount of products:</b> " + amount
+            + "<br><b>Price:</b> $ " + price + "<br><br>Is it right?";
+            
+            chat_text = chat_text + '<br><a class="yes_button" onclick="delivery_ok()">Yes</a>';
+            chat_text = chat_text + '<a class="no_button" onclick="addDelivery()">No</a>';
+
+            // Refresh the output box
+            $("#chat_output").html(chat_text);
+            var elem = document.getElementById('chat_output');
+            elem.scrollTop = elem.scrollHeight;
+         }
+         else{
+            alert("Error: missing data. Please, try again");
+            addDelivery();
+         }
+      }      
+      
+      function delivery_ok() {
+         // An example of a Javascript function offering some interactivity
+         alert("Thank you! Your delivery will be processed as soon as possible.");
+         chat_text = chat_text + "<br/>Well done! Delivery entered.<br>Do you need something else?<br>";
+         chat_text = chat_text + '<a class="yes_button" onclick="help2()">Yes</a>';
+         chat_text = chat_text + '<a class="no_button" onclick="end()">No</a>';
+         $("#chat_output").html(chat_text);
+         var elem = document.getElementById('chat_output');
+         elem.scrollTop = elem.scrollHeight;
+      }  
+      
+      function findDelivery(){
+
+         var myName = prompt("Please enter the sender's name", "{{username}}");
+         var delivery = prompt("Please enter the ID of the delivery");
+         
+         if (myName != null && delivery != null) {
+            chat_text = chat_text + "<br>This is the status of your delivery:<br><b><br>Sender:</b> " + myName + "<br><b>Delivery ID:</b> " + delivery 
+            + "<br><b>Customer:</b> Bob<br><b>Status:</b> shipped<br><b>Pick-up address:</b> Maininkitie 4, Espoo 02320 (FI)<br><b>Destination address:</b> via Mac Mahon 104, Milano 20155 (IT)<br><b>Amount of packages:</b> 3<br><b>Price:</b> $42<br><br>Do you need something else?<br>";   
+         chat_text = chat_text + '<a class="yes_button" onclick="help2()">Yes</a>';
+         chat_text = chat_text + '<a class="no_button" onclick="end()">No</a>';
+         $("#chat_output").html(chat_text); 
+         var elem = document.getElementById('chat_output');
+         elem.scrollTop = elem.scrollHeight;
+         }
+      }
+          
+
+      function menu() {
+         // The menu (instructions) for the CLI is defined here
+         chat_text = chat_text + '<br>Select one of the following functions:<br>';
+         chat_text = chat_text + '<a class="help_button" onclick="addDelivery()">Add Delivery</a>';
+         chat_text = chat_text + '<a class="help_button" onclick="findDelivery()">Find Delivery</a>';
+         chat_text = chat_text + '<a class="help_button" onclick="help()">Help</a>';
+         $("#chat_output").html(chat_text);
+         var elem = document.getElementById('chat_output');
+         elem.scrollTop = elem.scrollHeight;
+      }
+
+      
+      
+      function main_loop(command) {
+          
+          //Following two lines used to scroll down every input message
+          var elem = document.getElementById('chat_output');
+          elem.scrollTop = elem.scrollHeight;
+         
+          chat_text = chat_text + "<br/>> ".fontcolor("DodgerBlue") + command.fontcolor("DodgerBlue");
+          var cmd = command.split(" ");
+          
+          switch (cmd[0].toLowerCase())
+              {
+                  case "hey":
+                  case "hi":
+                  case "hello":
+                  case "good morning":
+                  case "ciao":
+                  case "good evening":
+                  case "good night":
+                  case "hola":
+                      hello();
+                      break;                 
+
+                  case "menu":
+                      menu();
+                      break;
+         
+                  case "delivery":
+                  case "add delivery":
+                  case "add":
+                      // start or restart a chat for booking tickets
+                      addDelivery();
+                      break; 
+
+                  case "find":
+                  case "find delivery":
+                      findDelivery();
+                      break; 
+
+                  case "help":
+                  case "help me":
+                  case "?":
+                      help();
+                      break;    
+                  
+                  case "esc":
+                  case "exit":
+                  case "finish":
+                  case "stop":
+                     end();
+                     break;
+               
+                  case "cls":
+                  case "clear":
+                  case "clear all":
+                  case "clc":
+                      cls();
+                      break;                
+
+                  default:
+                      chat_text = chat_text + " " + suggest();
+                      break;
+              }
+          
+          
+          $("#chat_output").html(chat_text);
+          //Used to scroll down every bot message
+          var elem = document.getElementById('chat_output');
+          elem.scrollTop = elem.scrollHeight;
+          return;
+      }
+      
+      
+      
+      $(document).ready(function(){
+      
+         $("#chat_output").html(chat_text);
+
+         $("#command_button").click(function(){
+             main_loop($("#command").val());
+             $("#command").val('');
+         });
+      
+         $("#command").keyup(function(event) {
+             if (event.keyCode === 13) {
+                  $("#command_button").click();
+             }
+         });
+         
+         $("#restart").click(function(){
+            cls();
+         });   
+
+      });
+           
+</script>
+</html>
